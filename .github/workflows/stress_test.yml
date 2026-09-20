@@ -1,0 +1,39 @@
+name: Bot Stress Tester
+
+on:
+  workflow_dispatch:
+    inputs:
+      bot_count:
+        description: 'Jumlah Bot yang ingin diluncurkan'
+        required: true
+        default: '20'
+      server_ip:
+        description: 'IP Server Target'
+        required: true
+        default: 'premium2.raehost.com'
+      server_port:
+        description: 'Port Server Target'
+        required: true
+        default: '19210'
+
+jobs:
+  run-stress-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Minyooh Bot Tester
+        env:
+          BOT_COUNT: ${{ github.event.inputs.bot_count }}
+          SERVER_IP: ${{ github.event.inputs.server_ip }}
+          SERVER_PORT: ${{ github.event.inputs.server_port }}
+        run: node bot_tester.js
