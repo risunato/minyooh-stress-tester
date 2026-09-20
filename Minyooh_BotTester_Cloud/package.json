@@ -1,0 +1,9 @@
+{
+  "name": "minyooh-stress-tester-cloud",
+  "version": "1.0.0",
+  "main": "bot_tester.js",
+  "dependencies": {
+    "bedrock-protocol": "^3.59.0",
+    "minecraft-data": "^3.71.0"
+  }
+}
